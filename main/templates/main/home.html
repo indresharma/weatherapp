@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Weather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark" style="background-color: #1a5f91;">
+        <h6 class="navbar-brand">Weather App</h6>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city">
+                    <button type="submit" class="">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="container m-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>City: {{data.city | capfirst}}</h4>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="col-md-7">
+                                Temperature: {{data.temperature}}</br>
+                                Description: {{data.description | capfirst}}</br>
+                                Humidity: {{data.humidity}}</br>
+                            </div>
+            
+                            <div class="col-md-5">
+                                <img src="https://openweathermap.org/img/w/{{data.icon}}.png" alt="Img" height="70px" width="70px">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
